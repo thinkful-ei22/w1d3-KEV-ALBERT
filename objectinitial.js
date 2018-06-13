@@ -108,32 +108,65 @@
 
 // };
 
-const decode = function(word){
-  const charCode= word[0].charCodeAt();
-  if(charCode < 97 || charCode >100){
-	  return ' ';
-  }
-  return word [charCode - 96];
-};
+// const decode = function(word){
+//   const charCode= word[0].charCodeAt();
+//   if(charCode < 97 || charCode >100){
+// 	  return ' ';
+//   }
+//   return word [charCode - 96];
+// };
 
-const decodeWords = function(obj){
-  let tempString = Object.values(obj).toString();
-  console.log(tempString);
-  return tempString
-    .split(',')
-    .map(word => decode(word))
-    .join('');
-};
+// const decodeWords = function(obj){
+//   let tempString = Object.values(obj).toString();
+//   console.log(tempString);
+//   return tempString
+//     .split(',')
+//     .map(word => decode(word))
+//     .join('');
+// };
 
-console.log(decodeWords(
-  {
-    one: 'craft',
-    two: 'block', 
-    three: 'argon', 
-    four: 'meter', 
-    five: 'bells', 
-    six: 'brown', 
-    seven: 'croon', 
-    eight: 'droop',
+// console.log(decodeWords(
+//   {
+//     one: 'craft',
+//     two: 'block',
+//     three: 'argon',
+//     four: 'meter',
+//     five: 'bells',
+//     six: 'brown',
+//     seven: 'croon',
+//     eight: 'droop',
+//   }
+// ));
+
+const createCharacter = function(name, nickname, race, origin, attack, defense){
+
+  return {
+    name,
+    nickname,
+    race,
+    origin,
+    attack,
+    defense,
+    describe: function(){
+
+      console.log(`${this.name} is a ${this.race} from ${this.origin}.`);
+
+    },
+    evaluateFight: function(opponent){
+      return `Your opponent takes {x} damage and you receive {y} damage`;
+    }
+
   }
-));
+}
+
+
+
+
+const gandalf = createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6);
+const bilbo = createCharacter('Bilbo Baggins','bilbo' ,'Hobbit', 'The Shire', 2, 1);
+const frodo = createCharacter('Frodo Baggins' , 'frodo' , 'Hobbit' , 'The Shire' ,3 , 2 )
+const aragorn = createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6 , 8)
+const legolas = createCharacter( 'Legolas', 'legolas' , 'Elf', 'Woodland Realm', 8 , 5);
+
+
+console.log(gandalf.evaluateFight(legolas));
