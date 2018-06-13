@@ -1,3 +1,4 @@
+'use strict';
 function personMaker() {
   const person = {
     firstName: 'Paul',
@@ -5,9 +6,9 @@ function personMaker() {
     // replace `null` with a function that uses self reference to return
     // full name
     fullName: function(){
-      return `${this.firstName} ${this.lastName}`
+      return `${this.firstName} ${this.lastName}`;
     },
-  }
+  };
   return person;
 }
 
