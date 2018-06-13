@@ -53,9 +53,9 @@
 
 // for (let i = 0; i < myArray.length; i++){
 //   console.log(`${myArray[i].name} ${myArray[i].jobTitle}`);
-  // for (const key in myArray[i]){
-  //   console.log(myArray[i][key]);
-  //}
+// for (const key in myArray[i]){
+//   console.log(myArray[i][key]);
+//}
 //}
 
 // Change the iteration to print out messages in this format: "${title} ${name} reports to ${boss}.".
@@ -99,31 +99,41 @@
 //  }
 // }
 
+// const decodeString = function(str){
 
+//   return str
+//     .split(' ')
+//     .map(word => decode(word))
+//     .join('');
+
+// };
 
 const decode = function(word){
-	const charCode= word[0].charCodeAt();
-	if(charCode < 97 || charCode >100){
-	  return '';
-	}
+  const charCode= word[0].charCodeAt();
+  if(charCode < 97 || charCode >100){
+	  return ' ';
+  }
   return word [charCode - 96];
-}
-
-
-const decodeString = function(str){
-
-	return str
-	         .split(' ')
-	         .map(word => decode(word))
-	         .join('');
-
 };
 
 const decodeWords = function(obj){
-return decode(obj);
-}
+  let tempString = Object.values(obj).toString();
+  console.log(tempString);
+  return tempString
+    .split(',')
+    .map(word => decode(word))
+    .join('');
+};
 
-
-
-
-console.log(decodeWords({craft,block, argon, meter, bells, brown, croon, droop}));
+console.log(decodeWords(
+  {
+    one: 'craft',
+    two: 'block', 
+    three: 'argon', 
+    four: 'meter', 
+    five: 'bells', 
+    six: 'brown', 
+    seven: 'croon', 
+    eight: 'droop',
+  }
+));
