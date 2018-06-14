@@ -55,8 +55,8 @@
 //   console.log(`${myArray[i].name} ${myArray[i].jobTitle}`);
 // for (const key in myArray[i]){
 //   console.log(myArray[i][key]);
-//}
-//}
+// }
+// }
 
 // Change the iteration to print out messages in this format: "${title} ${name} reports to ${boss}.".
 // For example: Junior Engineer Bob reports to Fred..
@@ -150,23 +150,37 @@ const createCharacter = function(name, nickname, race, origin, attack, defense){
     describe: function(){
 
       console.log(`${this.name} is a ${this.race} from ${this.origin}.`);
-
     },
-    evaluateFight: function(opponent){
-      return `Your opponent takes {x} damage and you receive {y} damage`;
+    evaluateFight: function(name){
+      let damageTakes = 0;
+      let damageRcvd = 0;
+      if (this.attack > name.defense){
+        damageTakes = this.attack - name.defense;
+      } else if(this.attack < name.defense){
+        damageRcvd = this.defense - name.attack;
+      }
+      console.log(`Your opponent takes ${damageTakes} damage and you receive ${damageRcvd} damage`);
     }
 
-  }
+  };
 }
 
 
+const characters = [
+    createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6),
+    createCharacter('Bilbo Baggins','bilbo' ,'Hobbit', 'The Shire', 2, 1),
+    createCharacter('Frodo Baggins' , 'frodo' , 'Hobbit' , 'The Shire' ,3 , 2 ),
+    createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6 , 8),
+    createCharacter( 'Legolas', 'legolas' , 'Elf', 'Woodland Realm', 8 , 5),
 
+]
 
-const gandalf = createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6);
-const bilbo = createCharacter('Bilbo Baggins','bilbo' ,'Hobbit', 'The Shire', 2, 1);
-const frodo = createCharacter('Frodo Baggins' , 'frodo' , 'Hobbit' , 'The Shire' ,3 , 2 )
-const aragorn = createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6 , 8)
-const legolas = createCharacter( 'Legolas', 'legolas' , 'Elf', 'Woodland Realm', 8 , 5);
+characters.push(createCharacter('Arwen Undomiel','arwen', 'Half-Elf', 'Rivendell', 7, 6));
 
+characters.find(input => input.nickname === 'aragorn').describe();
 
-console.log(gandalf.evaluateFight(legolas));
+const charHobbit = characters.filter( val => val.race === 'Hobbit' );
+console.log(charHobbit);
+
+const attackAboveFive = characters.filter( val => val.attack > 5)
+console.log(attackAboveFive);
